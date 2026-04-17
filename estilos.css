@@ -166,6 +166,15 @@ body {
     margin: 0;
 }
 
+.main-controls-row {
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
 .volume-container {
     position: relative;
     width: 240px;
@@ -175,6 +184,52 @@ body {
     justify-content: center;
     touch-action: none;
     margin: 0;
+}
+
+.custom-slider-container {
+
+    margin-right: -10px;
+    width: 50px; 
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: none; 
+    cursor: pointer;
+}
+
+/* El "carril" gris */
+.custom-slider-bar {
+    width: 4px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse; /* El volumen sube hacia arriba */
+}
+
+/* La parte rellena (brillante) */
+.custom-slider-fill {
+    width: 100%;
+    height: 50%; /* Se controla con JS */
+    background: var(--accent);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 162, 255, 0.3);
+}
+
+/* La bolita */
+.custom-slider-thumb {
+    width: 26px;
+    height: 26px;
+    background: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    bottom: 50%; /* Se controla con JS */
+    transform: translate(-50%, 50%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    border: 2px solid #1a1a1a;
 }
 
 .vol-ring-svg {
@@ -206,55 +261,6 @@ body {
     font-weight: 100;
     color: white;
     text-align: center;
-}
-
-.vertical-slider-container {
-    height: 180px;
-    width: 40px; /* Espacio para el pulgar */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.vertical-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 180px; /* Esto se convierte en la ALTURA por la rotación */
-    height: 4px;   /* Esto es el GROSOR de la línea */
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    outline: none;
-    transform: rotate(-90deg); /* Rotación manual para evitar el azul de iOS */
-}
-
-.vertical-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    background: #ffffff;
-    border-radius: 50%;
-    border: 2px solid #1a1a1a;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    cursor: pointer;
-}
-
-
-.vertical-slider::-webkit-slider-runnable-track {
-    -webkit-appearance: none;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-}
-
-.vertical-slider::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    background: #ffffff;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #1a1a1a;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .controls {
