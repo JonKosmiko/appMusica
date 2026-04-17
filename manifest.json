@@ -1,6 +1,6 @@
 {
   "name": "App Sonido",
-  "short_name": "MED02",
+  "short_name": "AppSonido",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f1013",
