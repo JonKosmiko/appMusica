@@ -45,13 +45,22 @@
                 <p>Reproduciendo Múscia</p>
             </div>
 
-            <div class="volume-container" id="volArea">
-                <svg class="vol-ring-svg" viewBox="0 0 240 240">
-                    <circle class="vol-ring-bg" cx="120" cy="120" r="100" stroke-width="4"></circle>
-                    <circle class="vol-ring-fill" id="volProgress" cx="120" cy="120" r="100" stroke-width="4"
-                        style="stroke-dasharray: 628; stroke-dashoffset: 628;"></circle>
-                </svg>
-                <div class="vol-value" id="volDisplay" style="font-size: 54px;">50%</div>
+            <div class="main-controls-row" style="display: flex; align-items: center; justify-content: center; gap: 20px; position: relative; margin-left: 40px;">
+                <div class="volume-container" id="volArea" style="margin: 0;">
+                    <svg class="vol-ring-svg" viewBox="0 0 240 240">
+                        <circle class="vol-ring-bg" cx="120" cy="120" r="100" stroke-width="4"></circle>
+                        <circle class="vol-ring-fill" id="volProgress" cx="120" cy="120" r="100" stroke-width="4"
+                            style="stroke-dasharray: 628; stroke-dashoffset: 628;"></circle>
+                    </svg>
+                    <div class="dentroCirculo">
+                        <div id="texto_volDisplay" style="margin-left: -8px;font-size: 22px; opacity: 0.6; text-align: center;">Volumen: </div>
+                        <div class="vol-value" id="volDisplay" style="font-size: 48px;">50%</div>
+                    </div>
+                </div>
+
+                <div class="vertical-slider-container">
+                    <input type="range" min="0" max="100" value="50" class="vertical-slider" id="volSlider" orient="vertical">
+                </div>
             </div>
 
 

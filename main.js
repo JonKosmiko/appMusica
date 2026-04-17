@@ -8,55 +8,26 @@ const volProgress = document.getElementById('volProgress');
 const volDisplay = document.getElementById('volDisplay');
 const playBtn = document.getElementById('playBtn');
 const playIcon = document.getElementById('playIcon');
-const volArea = document.getElementById('volArea');
 const visualizer = document.getElementById('visualizer');
+const volSlider = document.getElementById('volSlider');
 
-// LÓGICA DE CONTROL DE VOLUMEN (DIAL CIRCULAR FUNCIONAL)
-function handleVolume(e) {
-    const rect = volArea.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+// ÚNICO CONTROL: Escuchar al slider
+volSlider.addEventListener('input', (e) => {
+    vol = parseInt(e.target.value);
+    updateUI();
+});
 
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
-    const angle = Math.atan2(clientY - centerY, clientX - centerX);
-    let degree = angle * (180 / Math.PI) + 90;
-
-    if (degree < 0) degree += 360;
-
-    let newVol = Math.round((degree / 360) * 100);
-
-    if (Math.abs(newVol - vol) < 20) {
-        vol = newVol;
-        updateUI();
-    } else if (vol > 80 && newVol < 20) {
-        vol = 100; updateUI();
-    } else if (vol < 20 && newVol > 80) {
-        vol = 0; updateUI();
-    }
-}
-
-let isDragging = false;
-const startAction = (e) => { isDragging = true; handleVolume(e); };
-const endAction = () => { isDragging = false; };
-const moveAction = (e) => { if (isDragging) { e.preventDefault(); handleVolume(e); } };
-
-volArea.addEventListener('mousedown', startAction);
-window.addEventListener('mousemove', moveAction);
-window.addEventListener('mouseup', endAction);
-
-volArea.addEventListener('touchstart', startAction, { passive: false });
-window.addEventListener('touchmove', moveAction, { passive: false });
-window.addEventListener('touchend', endAction);
-
+// Actualiza toda la interfaz basándose en la variable 'vol'
 function updateUI() {
+    // 1. Texto central
     volDisplay.innerText = `${vol}%`;
-    const offset = 565 - (565 * vol / 100);
+    
+    // 2. Anillo del círculo (el 565 es por tu stroke-dasharray anterior, ajústalo si es necesario)
+    const offset = 628 - (628 * vol / 100); 
     volProgress.style.strokeDashoffset = offset;
 }
 
-// Play / Pause
+// Lógica de Play/Pause (sin cambios)
 playBtn.addEventListener('click', function () {
     isPlaying = !isPlaying;
     if (isPlaying) {
@@ -68,6 +39,7 @@ playBtn.addEventListener('click', function () {
     }
 });
 
+// Lógica del Visualizador y Zonas (sin cambios)
 function changeZone(btn, name) {
     document.querySelectorAll('.zone-pill').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -88,21 +60,16 @@ function startV() {
     vInterval = setInterval(() => {
         for (let col = 0; col < 20; col++) {
             if (Math.random() > 0.8) {
-                if (col < 5) targetHeights[col] = Math.random() * 5 + 3;
-                else if (col < 15) targetHeights[col] = Math.random() * 10;
-                else targetHeights[col] = Math.random() * 4;
+                targetHeights[col] = col < 5 ? Math.random() * 5 + 3 : (col < 15 ? Math.random() * 10 : Math.random() * 4);
             }
-
             currentHeights[col] += (targetHeights[col] - currentHeights[col]) * 0.15;
-
             for (let row = 0; row < 10; row++) {
                 const index = (row * 20) + col;
                 const isActive = (9 - row) < currentHeights[col];
                 segs[index].classList.toggle('active', isActive);
             }
-
             if (Math.random() > 0.5) {
-                const randomDb = (Math.random() * -5 - 20).toFixed(1); // Oscila entre -20 y -25 dB
+                const randomDb = (Math.random() * -5 - 20).toFixed(1);
                 document.getElementById('db-display').innerText = `${randomDb} dB`;
             }
         }
@@ -114,5 +81,6 @@ function stopV() {
     document.querySelectorAll('.bar-segment').forEach(s => s.classList.remove('active'));
 }
 
+// Inicialización
 initV();
 updateUI();
