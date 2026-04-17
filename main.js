@@ -76,6 +76,7 @@ function updateUI() {
         sliderFill.style.height = `${vol}%`;
         sliderThumb.style.bottom = `${vol}%`;
     }
+    document.body.style.height = '100dvh';
 }
 
 // --- CONTROLES DE REPRODUCCIÓN ---
