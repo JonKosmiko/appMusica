@@ -214,6 +214,7 @@ body {
     -webkit-appearance: none;
     width: 6px;
     height: 180px;
+    background: transparent;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     outline: none;
@@ -233,13 +234,23 @@ body {
     border: 2px solid #333;
 }
 
+
+.vertical-slider::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+    border: none;
+}
+
 .vertical-slider::-moz-range-thumb {
     width: 18px;
     height: 18px;
     background: #ffffff;
     border-radius: 50%;
     cursor: pointer;
-    border: 2px solid #333;
+    border: 2px solid #1a1a1a;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .controls {
