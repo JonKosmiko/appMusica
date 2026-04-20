@@ -18,9 +18,10 @@
 
 html, body {
     margin: 0;
-    padding: 0;
     width: 100%;
-    height: 100dvh;
+    min-height: 100dvh;
+
+    position: relative;
 
     background-color: var(--bg); 
     background: radial-gradient(circle at top right, #1e2027, #0f1013);
@@ -37,10 +38,7 @@ body {
 .main-panel {
     margin: 0;
     width: 100vw;
-    /* max-width: 430px; */
     min-height: 100dvh;
-    /* padding-left: 25px;
-    padding-right: 25px; */
     padding-top: calc(var(--safe-top) + 10px);
     padding-bottom: env(safe-area-inset-bottom);
     
@@ -90,16 +88,13 @@ body {
     background: transparent;
     border: none;
     width: 22px;
-    /* Un pelín más compacto para armonizar con el texto */
     height: 22px;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    /* Blanco puro */
     opacity: 0.3;
-    /* Mismo nivel que el texto de la izquierda */
     transition: opacity 0.2s ease, transform 0.3s ease;
     cursor: pointer;
 }
@@ -269,7 +264,7 @@ body {
     gap: 20px;
     width: 100%;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 90px;
     z-index: 2;
 }
 
