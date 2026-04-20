@@ -21,9 +21,8 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100dvh;
-    overflow: hidden;
-    position: fixed;
-    background-color: #0f1013; 
+
+    background-color: var(--bg); 
     background: radial-gradient(circle at top right, #1e2027, #0f1013);
 }
 
@@ -34,35 +33,28 @@ body {
     justify-content: center;
 }
 
-.audio-app {
-    width: 100%;
-    max-width: 430px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-top: calc(var(--safe-top) + 10px);
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-bottom: env(safe-area-inset-bottom); 
-    box-sizing: border-box;
-    background-color: #0f1013;
-}
 
 .main-panel {
-    flex-grow: 1;
-    background: var(--glass);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-radius: 40px;
-    border: 1px solid var(--glass-border);
+    margin: 0;
+    width: 100vw;
+    /* max-width: 430px; */
+    min-height: 100dvh;
+    /* padding-left: 25px;
+    padding-right: 25px; */
+    padding-top: calc(var(--safe-top) + 10px);
+    padding-bottom: env(safe-area-inset-bottom);
+    
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 40px 30px 100px 30px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    position: relative;
-    overflow: hidden;
+    
+    position: fixed;
+    
+    background: var(--glass);
+    backdrop-filter: blur(25px);
 }
 
 .main-panel::after {

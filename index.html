@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#0f1013">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <link rel="apple-touch-icon" href="icono-192.png">
+
     <link rel="stylesheet" href="estilos.css">
     <title>Control de sonido</title>
 
@@ -22,91 +25,89 @@
 
 <body>
 
-    <div class="audio-app">
-        <main class="main-panel">
+    <main class="main-panel">
 
-            <div class="panel-top-bar"
-                style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 15px 0 15px;">
-                <div style="font-size: 8px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.3; color: white;">HI-RES
-                    AUDIO | 24-BIT</div>
+        <div class="panel-top-bar"
+            style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 15px 0 15px;">
+            <div style="font-size: 8px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.3; color: white;">HI-RES
+                AUDIO | 24-BIT</div>
 
-                <button class="btn-gear-clean-filled">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 35a15 15 0 1 0 0 30 15 15 0 0 0 0-30zm0 24a9 9 0 1 1 0-18 9 9 0 0 1 0 18z" />
-                        <path
-                            d="M54 10h-8l-2 8a38 38 0 0 0-11 5l-7-4-6 6 4 7a38 38 0 0 0-5 11l-8 2v8l8 2a38 38 0 0 0 5 11l-4 7 6 6 7-4a38 38 0 0 0 11 5l2 8h8l2-8a38 38 0 0 0 11-5l7 4 6-6-4-7a38 38 0 0 0 5-11l8-2v-8l-8-2a38 38 0 0 0-5-11l4-7-6-6-7 4a38 38 0 0 0-11-5z M50 25a25 25 0 1 1 0 50 25 25 0 0 1 0-50z" />
-                    </svg>
-                </button>
-            </div>
+            <button class="btn-gear-clean-filled">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 35a15 15 0 1 0 0 30 15 15 0 0 0 0-30zm0 24a9 9 0 1 1 0-18 9 9 0 0 1 0 18z" />
+                    <path
+                        d="M54 10h-8l-2 8a38 38 0 0 0-11 5l-7-4-6 6 4 7a38 38 0 0 0-5 11l-8 2v8l8 2a38 38 0 0 0 5 11l-4 7 6 6 7-4a38 38 0 0 0 11 5l2 8h8l2-8a38 38 0 0 0 11-5l7 4 6-6-4-7a38 38 0 0 0 5-11l8-2v-8l-8-2a38 38 0 0 0-5-11l4-7-6-6-7 4a38 38 0 0 0-11-5z M50 25a25 25 0 1 1 0 50 25 25 0 0 1 0-50z" />
+                </svg>
+            </button>
+        </div>
 
-            <div class="zone-pill-selector">
-                <button class="zone-pill " onclick="changeZone(this, 'Habitación')">Habitación</button>
-                <button class="zone-pill active " onclick="changeZone(this, 'Salón')">Salón</button>
-                <button class="zone-pill" onclick="changeZone(this, 'Cocina')">Cocina</button>
-                <button class="zone-pill" onclick="changeZone(this, 'Terraza')">Terraza</button>
-            </div>
+        <div class="zone-pill-selector">
+            <button class="zone-pill " onclick="changeZone(this, 'Habitación')">Habitación</button>
+            <button class="zone-pill active " onclick="changeZone(this, 'Salón')">Salón</button>
+            <button class="zone-pill" onclick="changeZone(this, 'Cocina')">Cocina</button>
+            <button class="zone-pill" onclick="changeZone(this, 'Terraza')">Terraza</button>
+        </div>
 
-            <div class="track-info">
-                <h2 id="current-zone-label">Salón</h2>
-                <p>Reproduciendo Múscia</p>
-            </div>
+        <div class="track-info">
+            <h2 id="current-zone-label">Salón</h2>
+            <p>Reproduciendo Múscia</p>
+        </div>
 
-            <div class="main-controls-row">
-                <div class="volume-container" id="volArea">
-                    <svg class="vol-ring-svg" viewBox="0 0 240 240">
-                        <circle class="vol-ring-bg" cx="120" cy="120" r="100" stroke-width="4"></circle>
-                        <circle class="vol-ring-fill" id="volProgress" cx="120" cy="120" r="100" stroke-width="4"
-                            style="stroke-dasharray: 628; stroke-dashoffset: 628;"></circle>
-                    </svg>
-                    <div class="dentroCirculo">
-                        <div id="texto_volDisplay" style="font-size: 14px; opacity: 0.4;">VOL</div>
-                        <div class="vol-value" id="volDisplay">50%</div>
-                    </div>
-                </div>
-
-                <div class="custom-slider-container" id="sliderTrack">
-                    <div class="custom-slider-bar">
-                        <div class="custom-slider-fill" id="sliderFill"></div>
-                        <div class="custom-slider-thumb" id="sliderThumb"></div>
-                    </div>
+        <div class="main-controls-row">
+            <div class="volume-container" id="volArea">
+                <svg class="vol-ring-svg" viewBox="0 0 240 240">
+                    <circle class="vol-ring-bg" cx="120" cy="120" r="100" stroke-width="4"></circle>
+                    <circle class="vol-ring-fill" id="volProgress" cx="120" cy="120" r="100" stroke-width="4"
+                        style="stroke-dasharray: 628; stroke-dashoffset: 628;"></circle>
+                </svg>
+                <div class="dentroCirculo">
+                    <div id="texto_volDisplay" style="font-size: 14px; opacity: 0.4;">VOL</div>
+                    <div class="vol-value" id="volDisplay">50%</div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: -10px;">
-                <div style="font-size: 7px; opacity: 0.25; letter-spacing: 2.5px; margin-bottom: 2px;">OUTPUT LEVEL
+            <div class="custom-slider-container" id="sliderTrack">
+                <div class="custom-slider-bar">
+                    <div class="custom-slider-fill" id="sliderFill"></div>
+                    <div class="custom-slider-thumb" id="sliderThumb"></div>
                 </div>
-                <div id="db-display"
-                    style="font-size: 10px; opacity: 0.5; font-family: 'Courier New', monospace; color: white;">-24.5 dB
-                </div>
             </div>
+        </div>
 
-            <div class="controls">
-                <button class="btn-side"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path d="M3 12h18M3 6h12M3 18h15" />
-                    </svg></button>
-                <button class="btn-side"><svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
-                    </svg></button>
-                <button class="btn-play" id="playBtn">
-                    <svg id="playIcon" width="30" height="30" fill="currentColor" viewBox="0 0 24 24">
-                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                    </svg>
-                </button>
-                <button class="btn-side"><svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M16 6h2v12h-2zm-10.5 6l8.5 6V6z" transform="rotate(180 12 12)" />
-                    </svg></button>
-                <button class="btn-side"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
-                    </svg></button>
+        <div style="text-align: center; margin-top: -10px;">
+            <div style="font-size: 7px; opacity: 0.25; letter-spacing: 2.5px; margin-bottom: 2px;">OUTPUT LEVEL
             </div>
+            <div id="db-display"
+                style="font-size: 10px; opacity: 0.5; font-family: 'Courier New', monospace; color: white;">-24.5 dB
+            </div>
+        </div>
 
-            <div class="visualizer-wrapper">
-                <div class="audio-visualizer" id="visualizer"></div>
-            </div>
-        </main>
-    </div>
+        <div class="controls">
+            <button class="btn-side"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path d="M3 12h18M3 6h12M3 18h15" />
+                </svg></button>
+            <button class="btn-side"><svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+                </svg></button>
+            <button class="btn-play" id="playBtn">
+                <svg id="playIcon" width="30" height="30" fill="currentColor" viewBox="0 0 24 24">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+            </button>
+            <button class="btn-side"><svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M16 6h2v12h-2zm-10.5 6l8.5 6V6z" transform="rotate(180 12 12)" />
+                </svg></button>
+            <button class="btn-side"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
+                </svg></button>
+        </div>
+
+        <div class="visualizer-wrapper">
+            <div class="audio-visualizer" id="visualizer"></div>
+        </div>
+    </main>
 
     <script src="main.js"></script>
     <script>
